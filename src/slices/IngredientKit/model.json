@@ -1,0 +1,16 @@
+{
+  "id": "ingredient_kit",
+  "type": "SharedSlice",
+  "name": "IngredientKit",
+  "description": "IngredientKit",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

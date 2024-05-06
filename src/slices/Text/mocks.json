@@ -1,0 +1,28 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"content",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Commodo dolore ut velit voluptate ea non ullamco dolor et aliquip minim. Irure elit sunt mollit deserunt excepteur dolor occaecat culpa consectetur aliquip sunt. Enim mollit nisi deserunt tempor do amet ex qui magna ipsum id tempor reprehenderit voluptate nisi."
+									}
+								}
+							]
+						}
+					]
+				]
+			}
+		]
+	}
+]

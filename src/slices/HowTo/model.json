@@ -1,0 +1,38 @@
+{
+  "id": "how_to",
+  "type": "SharedSlice",
+  "name": "HowTo",
+  "description": "HowTo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading3"
+          }
+        }
+      },
+      "items": {
+        "step": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Step",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "format": "page",
+  "id": "recipe",
+  "label": "Recipe",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "Title of the recipe",
+          "allowTargetBlank": false,
+          "single": "heading1"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {
+            "width": 1920,
+            "height": 1280
+          },
+          "thumbnails": [
+            {
+              "name": "thumbnail",
+              "width": 500,
+              "height": 350
+            }
+          ]
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "A short description of the recipe",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "servings": {
+        "type": "Number",
+        "config": {
+          "label": "Servings",
+          "placeholder": ""
+        }
+      },
+      "time": {
+        "type": "Number",
+        "config": {
+          "label": "Time",
+          "placeholder": ""
+        }
+      },
+      "categories": {
+        "type": "Group",
+        "config": {
+          "label": "Categories",
+          "repeat": false,
+          "fields": {
+            "category": {
+              "type": "Link",
+              "config": {
+                "label": "Category",
+                "select": "document",
+                "customtypes": ["category"]
+              }
+            }
+          }
+        }
+      },
+      "courses": {
+        "type": "Group",
+        "config": {
+          "label": "Courses",
+          "repeat": false,
+          "fields": {
+            "course": {
+              "type": "Link",
+              "config": {
+                "label": "Course",
+                "select": "document",
+                "customtypes": ["course"]
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "text": {
+              "type": "SharedSlice"
+            },
+            "ingredients": {
+              "type": "SharedSlice"
+            },
+            "how_to": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

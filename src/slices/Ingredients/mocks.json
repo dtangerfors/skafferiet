@@ -1,0 +1,50 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading3",
+						"content": {
+							"text": "Green"
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"item",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "nation",
+							"type": "Text"
+						}
+					],
+					[
+						"quantity",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "heard",
+							"type": "Text"
+						}
+					],
+					[
+						"measurement",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "alone",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	}
+]

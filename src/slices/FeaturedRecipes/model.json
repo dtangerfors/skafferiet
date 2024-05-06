@@ -1,0 +1,48 @@
+{
+  "id": "featured_recipes",
+  "type": "SharedSlice",
+  "name": "FeaturedRecipes",
+  "description": "FeaturedRecipes",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "background_color": {
+          "type": "Select",
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "lightgray"
+            ]
+          }
+        }
+      },
+      "items": {
+        "recipe": {
+          "type": "Link",
+          "config": {
+            "label": "Recipe",
+            "select": "document",
+            "customtypes": [
+              "recipe"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

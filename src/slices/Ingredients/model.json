@@ -1,0 +1,50 @@
+{
+  "id": "ingredients",
+  "type": "SharedSlice",
+  "name": "Ingredients",
+  "description": "Ingredients",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading3"
+          }
+        }
+      },
+      "items": {
+        "item": {
+          "type": "Text",
+          "config": {
+            "label": "Item",
+            "placeholder": ""
+          }
+        },
+        "quantity": {
+          "type": "Text",
+          "config": {
+            "label": "Quantity",
+            "placeholder": ""
+          }
+        },
+        "measurement": {
+          "type": "Text",
+          "config": {
+            "label": "Measurement",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}
