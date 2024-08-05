@@ -7,6 +7,9 @@ import { InnerSection, Section } from "../ui/layout/containers";
 import { Heading2 } from "../ui/typography";
 import { RecipeCard } from "../ui/cards/RecipeCard";
 import { SmallCategoryCard } from "../ui/cards/SmallCategoryCard";
+import { fetchRecipePages } from "./data";
+import { RecipePosts } from "./posts";
+import Pagination from "../ui/pagination";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -18,16 +21,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RecipePage() {
+export default async function RecipePage({
+  searchParams
+}: {
+  searchParams?: {
+    query?: string,
+    page?: string,
+  },
+}) {
 
   const client = createClient();
-
-  const recipes = await client.getAllByType("recipe", {
-    orderings: [{
-      field: "document.first_publication_date",
-      direction: "desc"
-    }]
-  });
 
   const categories = await client.getAllByType("category", {
     limit: 5
@@ -37,15 +40,19 @@ export default async function RecipePage() {
     limit: 5
   });
 
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
+  const totalPages = await fetchRecipePages();
+
   return (
     <main>
       <Hero title="Recept" />
       <Section>
         <InnerSection>
           <Heading2>Nya recept</Heading2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6 mt-6">
-            {recipes.slice(0, 3).map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
-          </div>
+          {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6 mt-6">
+            {recipes.results.slice(0, 3).map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+          </div> */}
         </InnerSection>
       </Section>
       <Section className="bg-white flex flex-col gap-12">
@@ -73,9 +80,8 @@ export default async function RecipePage() {
       <Section>
         <InnerSection>
           <Heading2>Alla recept</Heading2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6 mt-6">
-            {recipes.splice(3).map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
-          </div>
+          <RecipePosts currentPage={currentPage} />
+          <Pagination totalPages={totalPages} />
         </InnerSection>
       </Section>
     </main>

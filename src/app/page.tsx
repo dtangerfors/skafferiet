@@ -74,9 +74,9 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col">
-      <section className="relative bg-primary-100">
+      <section className="relative bg-primary">
         <div className="relative z-10 w-full max-w-screen-lg mx-auto py-12 lg:py-20 max-lg:px-6">
-          <h2 className="font-serif text-3xl text-primary text-center mb-4">Hitta din nya favoritträtt</h2>
+          <h1 className="font-serif text-5xl text-primary-100 text-center mb-4">{home.data.meta_title}</h1>
           <form action="#" className="flex flex-col items-center">
             <input type="text" className="w-full max-w-screen-sm bg-white border border-primary-100 rounded-3xl px-4 py-3"/>
           </form>
