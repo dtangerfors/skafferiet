@@ -5,7 +5,9 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Section, InnerSection } from "@/app/ui/layout/containers";
 import { Hero } from "@/app/ui/layout/Hero";
-import { RecipeCard } from "@/app/ui/cards/RecipeCard";
+import { fetchCategoryRecipePages } from "./data";
+import { RecipePosts } from "./posts";
+import Pagination from "@/app/ui/pagination";
 
 type PageProps = {
   params: {
@@ -13,11 +15,15 @@ type PageProps = {
     uid: string;
     type: string;
   };
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const client = createClient();
-  const category = await client.getByUID("category", params.uid).catch(() => notFound());;
+  const category = await client.getByUID("category", params.uid).catch(() => notFound());
 
   return {
     title: `${prismic.asText(category.data.name)}`,
@@ -26,24 +32,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 
-export default async function RecipeCategoryPage({ params }: PageProps) {
+export default async function RecipeCategoryPage({ params, searchParams }: PageProps) {
   const client = createClient();
 
   const category = await client.getByUID("category", params.uid);
-  const recipes = await client.getAllByType("recipe", {
-    filters: [prismic.filter.at("my.recipe.categories.category", category.id)],
-  });
+  const currentPage = Number(searchParams?.page) || 1;
+  const totalPages = await fetchCategoryRecipePages(category.id);
 
   return (
     <>
-      <Hero title={<PrismicText field={category.data.name} />} mode="light" />
-      <Section>
+      <Hero page={category} mode="image" />
+      <Section className="bg-white">
         <InnerSection>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6">
-            {recipes.slice(0, 3).map((recipe) => (
-              <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
-          </div>
+          <RecipePosts currentPage={currentPage} id={category.id} />
+          <Pagination totalPages={totalPages} />
         </InnerSection>
       </Section>
     </>

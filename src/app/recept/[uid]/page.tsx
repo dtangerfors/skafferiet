@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { SliceZone, PrismicText } from "@prismicio/react";
 import { components } from "@/slices";
 import { InnerSection, Section } from "@/app/ui/layout/containers";
-import { Heading1, Heading2 } from "@/app/ui/typography";
+import { Heading1, Heading2, Heading3 } from "@/app/ui/typography";
 import { Item, ItemList, RecipeGroup } from "./ingredients";
 import Step from "./step";
 import { MetaField } from "./metafield";
@@ -44,7 +44,7 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
 
   return (
     <>
-      <section className="relative bg-primary-100 lg:px-6">
+      <section className="relative bg-primary-200 lg:px-6">
         <div className="max-w-screen-2xl mx-auto flex flex-wrap">
           <div className="w-full max-w-lg py-20 max-lg:pb-8 px-6 lg:pl-0 lg:py-12 ml-auto self-center">
             <Heading1>
@@ -56,11 +56,6 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
               servings={recipe.data.servings}
               time={recipe.data.time}
             />
-            {description.length > 0 && (
-              <p className="font-sans font-normal text-base leading-relaxed text-primary-800 pb-[1em] last:pb-0">
-                <PrismicText field={description} />
-              </p>
-            )}
           </div>
           <div className="w-full lg:w-1/2">
             <figure className="relative h-full lg:-mr-6 lg:max-h-[50vh]">
@@ -73,10 +68,17 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
         </div>
       </section>
 
-      {blog_post.length > 0 && (
+      {(blog_post.length > 0 || description.length > 0) && (
         <Section>
           <InnerSection className="border-b border-gray-200 pb-0">
             <div className="max-w-screen-md mx-auto pb-12">
+
+              {description.length > 0 && (
+                <p className="font-sans font-semibold text-lg leading-relaxed text-primary-800 pb-[1em] last:pb-0">
+                  <PrismicText field={description} />
+                </p>
+              )}
+
               <SliceZone slices={blog_post} components={components} />
             </div>
           </InnerSection>
@@ -91,9 +93,9 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
               return (
                 <RecipeGroup key={`ingredients-${i}`}>
                   {ingredientGroup.primary.title.length > 0 && (
-                    <h3 className="font-serif font-normal text-lg text-primary pb-3 pt-6">
+                    <Heading3>
                       <PrismicText field={ingredientGroup.primary.title} />
-                    </h3>
+                    </Heading3>
                   )}
                   <ItemList>
                     {ingredientGroup.items.map((ingredient, i) => {
@@ -117,9 +119,9 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
               return (
                 <RecipeGroup key={`ingredients-${i}`}>
                   {recipeItemStep.primary.title.length > 0 && (
-                    <h3 className="font-serif font-normal text-lg text-primary pb-3 pt-6">
+                    <Heading3>
                       <PrismicText field={recipeItemStep.primary.title} />
-                    </h3>
+                    </Heading3>
                   )}
                   <ItemList>
                     {recipeItemStep.items.map((step, i) => (

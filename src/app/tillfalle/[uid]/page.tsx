@@ -4,6 +4,11 @@ import { PrismicText } from "@prismicio/react";
 import { Section, InnerSection } from "@/app/ui/layout/containers";
 import { Hero } from "@/app/ui/layout/Hero";
 import { RecipeCard } from "@/app/ui/cards/RecipeCard";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { fetchCategoryRecipePages } from "./data";
+import Pagination from "@/app/ui/pagination";
+import { RecipePosts } from "./posts";
 
 type PageProps = {
   params: {
@@ -11,26 +16,36 @@ type PageProps = {
     uid: string;
     type: string;
   };
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
 };
 
-export default async function RecipeCoursePage({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const client = createClient();
+  const course = await client.getByUID("course", params.uid).catch(() => notFound());
+
+  return {
+    title: `${prismic.asText(course.data.name)}`,
+    description: `${prismic.asText(course.data.description)}`,
+  };
+}
+
+export default async function RecipeCoursePage({ params, searchParams }: PageProps) {
   const client = createClient();
 
   const course = await client.getByUID("course", params.uid);
-  const recipes = await client.getAllByType("recipe", {
-    filters: [prismic.filter.at("my.recipe.courses.course", course.id)],
-  });
+  const currentPage = Number(searchParams?.page) || 1;
+  const totalPages = await fetchCategoryRecipePages(course.id);
 
   return (
     <>
-      <Hero title={<PrismicText field={course.data.name} />} mode="light" />
-      <Section>
+      <Hero page={course} mode="image" />
+      <Section className="bg-white">
         <InnerSection>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6">
-            {recipes.slice(0, 3).map((recipe) => (
-              <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
-          </div>
+          <RecipePosts currentPage={currentPage} id={course.id} />
+          <Pagination totalPages={totalPages} />
         </InnerSection>
       </Section>
     </>
