@@ -6,6 +6,7 @@ import { InnerSection, Section } from "./ui/layout/containers";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import Image from "next/image";
+import { asText } from "@prismicio/client";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -74,17 +75,17 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col">
-      <section className="relative bg-primary">
+      <section className="relative bg-primary-950">
         <div className="relative z-10 w-full max-w-screen-lg mx-auto py-12 lg:py-20 max-lg:px-6">
-          <h1 className="font-serif text-5xl text-primary-100 text-center mb-4">{home.data.meta_title}</h1>
+          <h1 className="font-serif text-5xl lg:text-6xl text-balance text-secondary text-center mb-4">{asText(home.data.title)}</h1>
           <form action="#" className="flex flex-col items-center">
             <input type="text" className="w-full max-w-screen-sm bg-white border border-primary-100 rounded-3xl px-4 py-3"/>
           </form>
         </div>
         <div className="w-full max-w-screen-lg mx-auto pt-12 max-lg:px-6">
-          <h2 className="font-serif text-3xl text-primary">Senaste tillagda recept</h2>
+          <h2 className="font-serif text-3xl text-white">Senaste tillagda recept</h2>
         </div>
-        <div className="relative z-10 bg-gradient-to-b from-transparent from-50% to-gray-50 to-50% p-6 overflow-hidden">
+        <div className="relative z-10 bg-gradient-to-b from-transparent from-50% to-white to-50% p-6 overflow-hidden">
           <div className="relative w-full max-w-screen-lg mx-auto md:grid grid-cols-2 gap-6">
             <HomepageSlider recipes={latestRecipes} />
           </div>

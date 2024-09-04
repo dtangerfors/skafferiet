@@ -22,7 +22,7 @@ export function MetaField({
   return (
     <ul className="flex my-4">
       {servings && 
-      <li className="text-base leading-none flex items-center mr-4 text-primary-800" title={`Det här recepetet är för ${servings} personer`}>
+      <li className="text-base leading-none flex items-center mr-4 text-white/70" title={`Det här recepetet är för ${servings} personer`}>
           <span className="text-sm mr-1">
             <User />
           </span>
@@ -32,7 +32,7 @@ export function MetaField({
       </li>
       }
       {time && 
-      <li className="text-base leading-none flex items-center mr-4 text-primary-800" title={`Receptet tar ${time} minuter att tillaga`}>
+      <li className="text-base leading-none flex items-center mr-4 text-white/70" title={`Receptet tar ${time} minuter att tillaga`}>
           <span className="text-sm mr-1">
             <Alarm />
           </span>
@@ -42,7 +42,7 @@ export function MetaField({
       </li>
       }
       {(Object.keys(categories[0]!.category).length > 1) && 
-        <li className="text-base leading-none flex items-center mr-4 text-primary-800">
+        <li className="text-base leading-none flex items-center mr-4 text-white/70">
           <span className="text-sm mr-1">
             <BookStack />
           </span>
@@ -52,7 +52,7 @@ export function MetaField({
             return (
               <>
                 {index ? ", " : ""}
-                <PrismicNextLink key={data.category.id} document={data.category} className="underline hover:no-underline decoration-primary-800/80">
+                <PrismicNextLink key={data.category.id} document={data.category} className="underline hover:no-underline decoration-white/70">
                   <PrismicText field={data.category.data.name} />
                 </PrismicNextLink>
               </>
@@ -62,7 +62,7 @@ export function MetaField({
         
         </li>}
       {(Object.keys(courses[0]!.course).length > 1) && 
-        <li className="text-base leading-none flex items-center mr-4 text-primary-800">
+        <li className="text-base leading-none flex items-center mr-4 text-white/70">
           <span className="text-sm mr-1">
             <Cutlery />
           </span>
@@ -70,7 +70,7 @@ export function MetaField({
           return (
             <>
               {index ? ", " : ""}
-              <PrismicNextLink key={data.course.id} document={data.course} className="underline hover:no-underline decoration-primary-800/80">
+              <PrismicNextLink key={data.course.id} document={data.course} className="underline hover:no-underline decoration-white/70">
                 <PrismicText field={data.course.data.name} />
               </PrismicNextLink>
             </>

@@ -25,18 +25,22 @@ function FooterLink({
 
 export function Footer() {
   return (
-    <footer className="bg-tertiary-200">
-      <div className="bg-tertiary-100/50 text-center p-6">
-        <span className="font-script text-primary text-xl">Daniels Skafferi</span>
-      </div>
-      <div className="px-6 pt-6">
+    <footer className="bg-tertiary-100">
+      <div 
+          style={{
+          backgroundImage: `url(/border-gray.svg)`,
+          backgroundSize: `30px 15px`,
+          backgroundPosition: `center bottom`,
+          backgroundRepeat: `repeat-x`,
+      }}
+        className="px-6 pt-6">
         <div className="max-w-screen-lg mx-auto">
           <div className="grid lg:grid-cols-12 pt-6 pb-32 gap-10">
             <div className="lg:col-span-6">
               <p className="text-xs text-primary font-semibold uppercase tracking-widest pb-4">
                 Daniels Skafferi
               </p>
-              <p className="text-gray-950/70">
+              <p className="text-gray-950/70 text-balance">
                 På Daniels Skafferi hittar du enkla recept skapade av mig, och
                 bra tips för göra matlagningen roligare.
               </p>
@@ -73,9 +77,11 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex justify-end pb-3 px-6">
-        <div className="max-w-screen-lg w-full mx-auto border-t border-primary-300 pt-3">
-          <p className="font-sans text-gray-950/70 text-xs">
+      <div className="pb-3 px-6 pt-2 bg-tertiary-200">
+        <div className="grid grid-cols-[1fr_2fr_1fr] max-w-screen-lg w-full mx-auto">
+          <span></span>
+          <span className="font-script text-primary text-xl justify-self-center self-center">Daniels Skafferi</span>
+          <p className="font-sans text-gray-950/70 text-xs justify-self-end self-center">
             Copyright &copy; {year}
           </p>
         </div>

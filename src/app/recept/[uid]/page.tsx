@@ -44,10 +44,10 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
 
   return (
     <>
-      <section className="relative bg-primary-200 lg:px-6">
+      <section className="relative bg-primary-950 lg:px-6">
         <div className="max-w-screen-2xl mx-auto flex flex-wrap">
           <div className="w-full max-w-lg py-20 max-lg:pb-8 px-6 lg:pl-0 lg:py-12 ml-auto self-center">
-            <Heading1>
+            <Heading1 color="text-secondary">
               <PrismicText field={recipe.data.title} />
             </Heading1>
             <MetaField

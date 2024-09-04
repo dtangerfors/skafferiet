@@ -42,7 +42,7 @@ export default async function RecipePage({
 
   return (
     <main>
-      <Hero title="Recept" borderColor="lightgray"/>
+      <Hero title="Recept" />
       {isFirstPage && (
         <>
           <Section>

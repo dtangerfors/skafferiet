@@ -76,6 +76,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        'snap-right': 'snap-right-key 0.5s',
+      },
+      keyframes: {
+        "snap-right-key": {
+          '0%, 100%': { transform: 'translateX(0px)' },
+          '50%': { transform: 'translateX(4px)' },
+        }
+      }
     },
   },
   plugins: [],

@@ -9,5 +9,6 @@ export const components = {
   image: dynamic(() => import("./Image")),
   ingredient_kit: dynamic(() => import("./IngredientKit")),
   ingredients: dynamic(() => import("./Ingredients")),
+  navigation_item: dynamic(() => import("./NavigationItem")),
   text: dynamic(() => import("./Text")),
 };

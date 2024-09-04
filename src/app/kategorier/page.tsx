@@ -4,9 +4,7 @@ import { InnerSection, Section } from "../ui/layout/containers";
 import { CategoryCard } from "../ui/cards/CategoryCard";
 import { Hero } from "../ui/layout/Hero";
 
-type Params = { uid: string };
-
-export async function generateMetadata({ params }: {params: Params}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getByUID("page", "kategorier");
 
@@ -20,6 +18,7 @@ export default async function CategoryPage() {
 
   const client = createClient();
 
+  const page = await client.getByUID("page", "kategorier");
   const categories = await client.getAllByType("category", {
     orderings: [{
       field: "document.first_publication_date",
@@ -29,7 +28,7 @@ export default async function CategoryPage() {
 
   return (
     <main>
-      <Hero title="Kategorier" />
+      <Hero title={page.data.title} />
       <Section>
         <InnerSection>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6 mt-6">
