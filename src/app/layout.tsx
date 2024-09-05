@@ -3,7 +3,7 @@ import { repositoryName } from "@/prismicio";
 import "./globals.css";
 import { Header } from "./ui/layout/header";
 import { Footer } from "./ui/layout/Footer";
-import { AnimationPresence } from "./animation";
+import { HeaderPresence } from "./animation";
 import { GoogleTagManager } from "@next/third-parties/google"
 
 export default async function RootLayout({
@@ -23,11 +23,11 @@ export default async function RootLayout({
         <GoogleTagManager gtmId="GTM-TLGJ28D" />
       </head>
       <body className="font-sans overflow-x-hidden bg-white">
-        <AnimationPresence>
+        <HeaderPresence>
           <Header />
+        </HeaderPresence>
           {children}
           <Footer />
-        </AnimationPresence>
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
