@@ -21,7 +21,7 @@ const FeaturedRecipes = ({ slice }: FeaturedRecipesProps): JSX.Element => {
       <div className="w-full">
         <Heading2>{slice.primary.title}</Heading2>
       </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6 mt-6">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-3 lg:gap-x-6 mt-6">
             {slice.items.map(item => <RecipeCard key={item.recipe.id} recipe={item.recipe} />)}
         </div>
       </InnerSection>

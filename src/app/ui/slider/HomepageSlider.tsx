@@ -10,7 +10,7 @@ export function HomepageSlider({ recipes }: {recipes: RecipeDocument<string>[]})
   return (
     <div className="py-5.5 pr-[15%] lg:pr-0">
       <Swiper
-        spaceBetween={10}
+        spaceBetween={12}
         slidesPerView={1}
         breakpoints={{
           758: {

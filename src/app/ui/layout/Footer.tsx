@@ -78,8 +78,8 @@ export function Footer() {
         </div>
       </div>
       <div className="pb-3 px-6 pt-2 bg-tertiary-200">
-        <div className="grid grid-cols-[1fr_2fr_1fr] max-w-screen-lg w-full mx-auto">
-          <span></span>
+        <div className="flex flex-col md:grid grid-cols-[1fr_2fr_1fr] gap-4 max-w-screen-lg w-full mx-auto">
+          <span className="max-md:hidden"></span>
           <span className="font-script text-primary text-xl justify-self-center self-center">Daniels Skafferi</span>
           <p className="font-sans text-gray-950/70 text-xs justify-self-end self-center">
             Copyright &copy; {year}

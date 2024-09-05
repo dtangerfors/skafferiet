@@ -78,9 +78,9 @@ export default async function Home() {
       <section className="relative bg-primary-950">
         <div className="relative z-10 w-full max-w-screen-lg mx-auto py-12 lg:py-20 max-lg:px-6">
           <h1 className="font-serif text-5xl lg:text-6xl text-balance text-secondary text-center mb-4">{asText(home.data.title)}</h1>
-          <form action="#" className="flex flex-col items-center">
+          {/* <form action="#" className="flex flex-col items-center">
             <input type="text" className="w-full max-w-screen-sm bg-white border border-primary-100 rounded-3xl px-4 py-3"/>
-          </form>
+          </form> */}
         </div>
         <div className="w-full max-w-screen-lg mx-auto pt-12 max-lg:px-6">
           <h2 className="font-serif text-3xl text-white">Senaste tillagda recept</h2>
