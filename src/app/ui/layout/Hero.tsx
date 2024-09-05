@@ -3,11 +3,11 @@ import { Section, InnerSection } from "./containers";
 import { Heading1, Paragraph } from "../typography";
 import { PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
-import { CategoryDocument, CourseDocument } from "../../../../prismicio-types";
+import { TagDocument, CollectionDocument } from "../../../../prismicio-types";
 
 type HeroProps = {
   mode?: "dark" | "light" | "image";
-  page?: CourseDocument | CategoryDocument;
+  page?: TagDocument | CollectionDocument;
   title?: React.ReactNode;
   borderColor?: "white" | "lightgray" | "gray";
 }
