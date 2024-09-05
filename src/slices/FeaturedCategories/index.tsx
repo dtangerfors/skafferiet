@@ -1,3 +1,4 @@
+"use server"
 import clsx from "clsx";
 import { getDeviceType } from "@/app/lib/server_utils";
 import { CategoryCard } from "@/app/ui/cards/CategoryCard";
