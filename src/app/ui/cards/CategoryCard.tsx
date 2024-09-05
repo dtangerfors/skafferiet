@@ -1,11 +1,11 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { TagDocument } from "../../../../prismicio-types";
+import { TagDocument, CollectionDocument } from "../../../../prismicio-types";
 import { PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { getDeviceType } from "@/app/lib/server_utils";
 
-export function CategoryCard({category}: {category: TagDocument}) {
+export function CategoryCard({category}: {category: TagDocument | CollectionDocument}) {
   const { isMobile } = getDeviceType();
   return (
     <Link href={`${category.url}`} className={clsx(
