@@ -1,3 +1,4 @@
+import * as prismic from '@prismicio/client'
 import { createClient } from "@/prismicio";
 import { Metadata } from "next";
 import { Hero } from "../ui/layout/Hero";
@@ -28,12 +29,18 @@ export default async function RecipePage({
 }) {
   const client = createClient();
 
-  const categories = await client.getAllByType("category", {
+  const courses = await client.getAllByType("tag", {
     limit: 5,
+    filters: [
+      prismic.filter.at("my.tag.collection", "Ztl7yRIAACAAxZSl")
+    ]
   });
-
-  const courses = await client.getAllByType("course", {
+  
+  const typeOfFood = await client.getAllByType("tag", {
     limit: 5,
+    filters: [
+      prismic.filter.at("my.tag.collection", "Ztl90hIAAB4AxcS6")
+    ]
   });
 
   const currentPage = Number(searchParams?.page) || 1;
@@ -53,12 +60,12 @@ export default async function RecipePage({
           </Section>
           <Section className="bg-white flex flex-col gap-12">
             <InnerSection>
-              <Heading2>Aktuella kategorier</Heading2>
-              <ShowCategories data={categories} label="Alla kategorier" link="/kategorier" />
+              <Heading2>Efter typ av rätt</Heading2>
+              <ShowCategories data={typeOfFood} label="Alla typer av rätter" link="/recept/kategori/typ-av-ratt" />
             </InnerSection>
             <InnerSection>
-              <Heading2>Hitta efter tillfälle</Heading2>
-              <ShowCategories data={courses} label="Alla tillfällen" link="/tillfalle" />
+              <Heading2>Recept efter måltid</Heading2>
+              <ShowCategories data={courses} label="Alla måltider" link="/recept/kategori/maltid" />
             </InnerSection>
           </Section>
         </>

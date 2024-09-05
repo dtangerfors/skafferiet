@@ -15,7 +15,7 @@ type Params = { uid: string };
 
 export async function generateMetadata({ params }: {params: Params}): Promise<Metadata> {
   const client = createClient();
-  const recipe = await client.getByUID("recipe", params.uid).catch(() => notFound());;
+  const recipe = await client.getByUID("recipe", params.uid).catch(() => notFound());
 
   return {
     title: recipe.data.meta_title || `${asText(recipe.data.title)}`,
@@ -27,7 +27,7 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
   const client = createClient();
 
   const recipe = await client.getByUID("recipe", params.uid, {
-    fetchLinks: ["category.name", "course.name"],
+    fetchLinks: ["tag.name"],
   });
 
   const ingredients = recipe.data.slices.filter(
@@ -51,8 +51,7 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
               <PrismicText field={recipe.data.title} />
             </Heading1>
             <MetaField
-              categories={recipe.data.categories}
-              courses={recipe.data.courses}
+              tags={recipe.data.tags}
               servings={recipe.data.servings}
               time={recipe.data.time}
             />

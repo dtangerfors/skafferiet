@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { CategoryDocument, CourseDocument } from "../../../../prismicio-types";
+import { TagDocument } from "../../../../prismicio-types";
 import { PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { ArrowRight } from "iconoir-react";
 import clsx from "clsx";
 import { getDeviceType } from "@/app/lib/server_utils";
 
-export function SmallCategoryCard({data}: {data: CategoryDocument | CourseDocument}) {
+export function SmallCategoryCard({data}: {data: TagDocument}) {
 
   const { isMobile } = getDeviceType();
 

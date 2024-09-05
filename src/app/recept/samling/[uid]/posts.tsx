@@ -1,5 +1,5 @@
 import { fetchCategoryRecipes } from "./data";
-import { RecipeCard } from "../../ui/cards/RecipeCard";
+import { RecipeCard } from "@/app/ui/cards/RecipeCard";
 
 export async function RecipePosts({currentPage, id}: {currentPage: number, id: string}) {
 

@@ -92,37 +92,37 @@ export type BlogPostDocument<Lang extends string = string> =
   >;
 
 /**
- * Content for Category documents
+ * Content for Collection documents
  */
-interface CategoryDocumentData {
+interface CollectionDocumentData {
   /**
-   * Name field in *Category*
+   * Name field in *Collection*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: category.name
+   * - **API ID Path**: collection.name
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   name: prismic.RichTextField;
 
   /**
-   * Description field in *Category*
+   * Description field in *Collection*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: category.description
+   * - **API ID Path**: collection.description
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
 
   /**
-   * Image field in *Category*
+   * Image field in *Collection*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: category.image
+   * - **API ID Path**: collection.image
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -130,70 +130,20 @@ interface CategoryDocumentData {
 }
 
 /**
- * Category document from Prismic
+ * Collection document from Prismic
  *
- * - **API ID**: `category`
+ * - **API ID**: `collection`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type CategoryDocument<Lang extends string = string> =
+export type CollectionDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<CategoryDocumentData>,
-    "category",
+    Simplify<CollectionDocumentData>,
+    "collection",
     Lang
   >;
-
-/**
- * Content for Course documents
- */
-interface CourseDocumentData {
-  /**
-   * Name field in *Course*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: course.name
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  name: prismic.TitleField;
-
-  /**
-   * Description field in *Course*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: course.description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * Image field in *Course*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: course.image
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
-}
-
-/**
- * Course document from Prismic
- *
- * - **API ID**: `course`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type CourseDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<CourseDocumentData>, "course", Lang>;
 
 type HomeDocumentDataSlicesSlice =
   | FeaturedRecipesSlice
@@ -425,33 +375,18 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 /**
- * Item in *Recipe → Categories*
+ * Item in *Recipe → Tags*
  */
-export interface RecipeDocumentDataCategoriesItem {
+export interface RecipeDocumentDataTagsItem {
   /**
-   * Category field in *Recipe → Categories*
+   * Tag field in *Recipe → Tags*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: recipe.categories[].category
+   * - **API ID Path**: recipe.tags[].tag
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  category: prismic.ContentRelationshipField<"category">;
-}
-
-/**
- * Item in *Recipe → Courses*
- */
-export interface RecipeDocumentDataCoursesItem {
-  /**
-   * Course field in *Recipe → Courses*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: recipe.courses[].course
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  course: prismic.ContentRelationshipField<"course">;
+  tag: prismic.ContentRelationshipField<"tag">;
 }
 
 type RecipeDocumentDataSlicesSlice = TextSlice | IngredientsSlice | HowToSlice;
@@ -516,26 +451,15 @@ interface RecipeDocumentData {
   time: prismic.NumberField;
 
   /**
-   * Categories field in *Recipe*
+   * Tags field in *Recipe*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: recipe.categories[]
+   * - **API ID Path**: recipe.tags[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  categories: prismic.GroupField<Simplify<RecipeDocumentDataCategoriesItem>>;
-
-  /**
-   * Courses field in *Recipe*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: recipe.courses[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  courses: prismic.GroupField<Simplify<RecipeDocumentDataCoursesItem>>;
+  tags: prismic.GroupField<Simplify<RecipeDocumentDataTagsItem>>;
 
   /**
    * Slice Zone field in *Recipe*
@@ -592,14 +516,75 @@ interface RecipeDocumentData {
 export type RecipeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<RecipeDocumentData>, "recipe", Lang>;
 
+/**
+ * Content for Tag documents
+ */
+interface TagDocumentData {
+  /**
+   * Name field in *Tag*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tag.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * Description field in *Tag*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tag.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Image field in *Tag*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tag.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Collection field in *Tag*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tag.collection
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  collection: prismic.ContentRelationshipField<"collection">;
+}
+
+/**
+ * Tag document from Prismic
+ *
+ * - **API ID**: `tag`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TagDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<TagDocumentData>, "tag", Lang>;
+
 export type AllDocumentTypes =
   | BlogPostDocument
-  | CategoryDocument
-  | CourseDocument
+  | CollectionDocument
   | HomeDocument
   | NavigationDocument
   | PageDocument
-  | RecipeDocument;
+  | RecipeDocument
+  | TagDocument;
 
 /**
  * Primary content in *FeaturedCategories → Primary*
@@ -621,14 +606,14 @@ export interface FeaturedCategoriesSliceDefaultPrimary {
  */
 export interface FeaturedCategoriesSliceDefaultItem {
   /**
-   * Category field in *FeaturedCategories → Items*
+   * Tag field in *FeaturedCategories → Items*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: featured_categories.items[].category
+   * - **API ID Path**: featured_categories.items[].tag
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  category: prismic.ContentRelationshipField<"category">;
+  tag: prismic.ContentRelationshipField<"tag">;
 }
 
 /**
@@ -1075,10 +1060,8 @@ declare module "@prismicio/client" {
       BlogPostDocument,
       BlogPostDocumentData,
       BlogPostDocumentDataSlicesSlice,
-      CategoryDocument,
-      CategoryDocumentData,
-      CourseDocument,
-      CourseDocumentData,
+      CollectionDocument,
+      CollectionDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -1091,9 +1074,10 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       RecipeDocument,
       RecipeDocumentData,
-      RecipeDocumentDataCategoriesItem,
-      RecipeDocumentDataCoursesItem,
+      RecipeDocumentDataTagsItem,
       RecipeDocumentDataSlicesSlice,
+      TagDocument,
+      TagDocumentData,
       AllDocumentTypes,
       FeaturedCategoriesSlice,
       FeaturedCategoriesSliceDefaultPrimary,

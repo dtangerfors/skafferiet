@@ -26,14 +26,15 @@ function FooterLink({
 export function Footer() {
   return (
     <footer className="bg-tertiary-100">
-      <div 
-          style={{
+      <div
+        style={{
           backgroundImage: `url(/border-gray.svg)`,
           backgroundSize: `30px 15px`,
           backgroundPosition: `center bottom`,
           backgroundRepeat: `repeat-x`,
-      }}
-        className="px-6 pt-6">
+        }}
+        className="px-6 pt-6"
+      >
         <div className="max-w-screen-lg mx-auto">
           <div className="grid lg:grid-cols-12 pt-6 pb-32 gap-10">
             <div className="lg:col-span-6">
@@ -71,7 +72,6 @@ export function Footer() {
               </p>
               <ul className="flex flex-col">
                 <FooterLink to="/om">Om</FooterLink>
-                <FooterLink to="/cookies">Cookies</FooterLink>
               </ul>
             </div>
           </div>
@@ -80,7 +80,9 @@ export function Footer() {
       <div className="pb-3 px-6 pt-2 bg-tertiary-200">
         <div className="flex flex-col md:grid grid-cols-[1fr_2fr_1fr] gap-4 max-w-screen-lg w-full mx-auto">
           <span className="max-md:hidden"></span>
-          <span className="font-script text-primary text-xl justify-self-center self-center">Daniels Skafferi</span>
+          <span className="font-script text-primary text-xl justify-self-center self-center">
+            Daniels Skafferi
+          </span>
           <p className="font-sans text-gray-950/70 text-xs justify-self-end self-center">
             Copyright &copy; {year}
           </p>

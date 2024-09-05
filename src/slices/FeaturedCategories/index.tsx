@@ -28,7 +28,7 @@ const FeaturedCategories = ({
         <Heading2>{slice.primary.title}</Heading2>
       </div>
       <div className={clsx(isMobile ? "flex gap-3 col-span-2 whitespace-nowrap overflow-auto snap-x snap-mandatory -mx-6 px-6 scrollbar-hide" : "grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6", "mt-6")}>
-         {slice.items.map(item => <CategoryCard key={item.category.link_type} category={item.category} />)}
+         {slice.items.map(item => <CategoryCard key={item.tag.link_type} category={item.tag} />)}
       </div>
     </InnerSection>
    </Section>

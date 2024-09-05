@@ -7,7 +7,7 @@ export async function fetchCategoryRecipePages(id: string) {
 
   try {
     const recipes = await client.getByType("recipe", {
-      filters: [prismic.filter.at("my.recipe.courses.course", id)],
+      filters: [prismic.filter.at("my.recipe.tags.tag", id)],
       orderings: [{
         field: "document.first_publication_date",
         direction: "desc"
@@ -28,7 +28,7 @@ export async function fetchCategoryRecipes(currentPage: number, id: string) {
 
   try {
     const recipes = await client.getByType("recipe", {
-      filters: [prismic.filter.at("my.recipe.courses.course", id)],
+      filters: [prismic.filter.at("my.recipe.tags.tag", id)],
       orderings: [{
         field: "document.first_publication_date",
         direction: "desc"

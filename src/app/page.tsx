@@ -2,10 +2,8 @@ import { createClient } from "@/prismicio";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HomepageSlider } from "./ui/slider/HomepageSlider";
-import { InnerSection, Section } from "./ui/layout/containers";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
-import Image from "next/image";
 import { asText } from "@prismicio/client";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,9 +32,9 @@ export default async function Home() {
                   ...primaryFields
                 }
                 items {
-                  category {
-                    ...on category {
-                      ...categoryFields
+                  tag {
+                    ...on tag {
+                      ...tagFields
                     }
                   }
                 }

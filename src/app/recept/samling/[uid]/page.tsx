@@ -23,19 +23,19 @@ type PageProps = {
 
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const client = createClient();
-  const category = await client.getByUID("category", params.uid).catch(() => notFound());
+  const tag = await client.getByUID("tag", params.uid).catch(() => notFound());
 
   return {
-    title: `${prismic.asText(category.data.name)}`,
-    description: `${prismic.asText(category.data.description)}`,
+    title: `${prismic.asText(tag.data.name)}`,
+    description: `${prismic.asText(tag.data.description)}`,
   };
 }
 
 
-export default async function RecipeCategoryPage({ params, searchParams }: PageProps) {
+export default async function RecipeTagPage({ params, searchParams }: PageProps) {
   const client = createClient();
 
-  const category = await client.getByUID("category", params.uid);
+  const category = await client.getByUID("tag", params.uid);
   const currentPage = Number(searchParams?.page) || 1;
   const totalPages = await fetchCategoryRecipePages(category.id);
 
@@ -55,13 +55,13 @@ export default async function RecipeCategoryPage({ params, searchParams }: PageP
 export async function generateStaticParams() {
   const client = createClient();
 
-  const categories = await client.getAllByType("category");
+  const tags = await client.getAllByType("tag");
 
-  return categories.map((category) => {
+  return tags.map((tag) => {
     return {
-      id: category.id,
-      uid: category.uid,
-      type: category.type,
+      id: tag.id,
+      uid: tag.uid,
+      type: tag.type,
     };
   });
 }

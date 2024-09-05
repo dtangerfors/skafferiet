@@ -2,12 +2,12 @@ import { createClient } from "@/prismicio";
 import * as prismic from "@prismicio/client";
 
 const ITEMS_PER_PAGE = 12;
-export async function fetchCategoryRecipePages(id: string) {
+export async function fetchTagPages(id: string) {
   const client = createClient();
 
   try {
-    const recipes = await client.getByType("recipe", {
-      filters: [prismic.filter.at("my.recipe.categories.category", id)],
+    const recipes = await client.getByType("tag", {
+      filters: [prismic.filter.at("my.tag.collection", id)],
       orderings: [{
         field: "document.first_publication_date",
         direction: "desc"
@@ -23,12 +23,12 @@ export async function fetchCategoryRecipePages(id: string) {
   }
 }
 
-export async function fetchCategoryRecipes(currentPage: number, id: string) {
+export async function fetchCollectionTags(currentPage: number, id: string) {
   const client = createClient();
 
   try {
-    const recipes = await client.getByType("recipe", {
-      filters: [prismic.filter.at("my.recipe.categories.category", id)],
+    const recipes = await client.getByType("tag", {
+      filters: [prismic.filter.at("my.tag.collection", id)],
       orderings: [{
         field: "document.first_publication_date",
         direction: "desc"

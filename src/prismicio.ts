@@ -24,27 +24,18 @@ const routes: prismic.ClientConfig["routes"] = [
     path: "/recept/:uid"
   },
   {
-    type: "course",
-    path: "/tillfalle/:uid"
+    type: "collection",
+    path: "/recept/kategori/:uid"
   },
   {
-    type: "category",
-    path: "/kategorier/:uid",
+    type: "tag",
+    path: "/recept/samling/:uid"
   },
   {
     type: "page",
     path: "/:uid"
   },
-  {
-    type: "page",
-    uid: "kategorier",
-    path: "/kategorier"
-  },
-  {
-    type: "page",
-    uid: "tillfalle",
-    path: "/tillfalle"
-  },
+  
   // {
   //   type: "blog_post",
   //   path: "/blogg/:uid"

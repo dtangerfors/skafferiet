@@ -61,35 +61,18 @@
           "placeholder": ""
         }
       },
-      "categories": {
+      "tags": {
         "type": "Group",
         "config": {
-          "label": "Categories",
-          "repeat": false,
+          "label": "Tags",
+          "repeat": true,
           "fields": {
-            "category": {
+            "tag": {
               "type": "Link",
               "config": {
-                "label": "Category",
+                "label": "Tag",
                 "select": "document",
-                "customtypes": ["category"]
-              }
-            }
-          }
-        }
-      },
-      "courses": {
-        "type": "Group",
-        "config": {
-          "label": "Courses",
-          "repeat": false,
-          "fields": {
-            "course": {
-              "type": "Link",
-              "config": {
-                "label": "Course",
-                "select": "document",
-                "customtypes": ["course"]
+                "customtypes": ["tag"]
               }
             }
           }

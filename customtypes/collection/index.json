@@ -1,7 +1,7 @@
 {
   "format": "custom",
-  "id": "category",
-  "label": "Category",
+  "id": "collection",
+  "label": "Collection",
   "repeatable": true,
   "status": true,
   "json": {
@@ -18,7 +18,7 @@
           "label": "Name",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "heading1"
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "description": {
@@ -27,17 +27,14 @@
           "label": "Description",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph"
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "image": {
         "type": "Image",
         "config": {
           "label": "Image",
-          "constraint": {
-            "width": 1920,
-            "height": 1280
-          },
+          "constraint": {},
           "thumbnails": []
         }
       }

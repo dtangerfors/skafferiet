@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { SmallCategoryCard } from "./cards/SmallCategoryCard";
 import { ArrowRight } from "iconoir-react";
-import { CategoryDocument, CourseDocument } from "../../../prismicio-types";
+import { TagDocument } from "../../../prismicio-types";
 import clsx from "clsx";
 import { getDeviceType } from "../lib/server_utils";
 
 export function ShowCategories({data, link, label}: {
-  data: CourseDocument[] | CategoryDocument[],
+  data: TagDocument[],
   link: string,
   label: string
 }) {

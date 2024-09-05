@@ -21,13 +21,13 @@
         }
       },
       "items": {
-        "category": {
+        "tag": {
           "type": "Link",
           "config": {
-            "label": "Category",
+            "label": "Tag",
             "select": "document",
             "customtypes": [
-              "category"
+              "tag"
             ]
           }
         }

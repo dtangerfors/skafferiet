@@ -1,27 +1,25 @@
 import { createClient } from "@/prismicio";
-import * as prismic from "@prismicio/client";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { InnerSection, Section } from "../ui/layout/containers";
-import { CategoryCard } from "../ui/cards/CategoryCard";
-import { Hero } from "../ui/layout/Hero";
+import { InnerSection, Section } from "@/app/ui/layout/containers";
+import { CategoryCard } from "@/app/ui/cards/CategoryCard";
+import { Hero } from "@/app/ui/layout/Hero";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getByUID("page", "tillfalle").catch(() => notFound());
+  const page = await client.getByUID("page", "kategorier");
 
   return {
-    title: page.data.meta_title,
+    title: page.data.meta_title || page.data.title,
     description: page.data.meta_description,
   };
 }
 
-export default async function CoursePage() {
+export default async function CategoryPage() {
 
   const client = createClient();
 
-  const page = await client.getByUID("page", "tillfalle");
-  const courses = await client.getAllByType("course", {
+  const page = await client.getByUID("page", "kategorier");
+  const categories = await client.getAllByType("collection", {
     orderings: [{
       field: "document.first_publication_date",
       direction: "desc"
@@ -34,7 +32,7 @@ export default async function CoursePage() {
       <Section>
         <InnerSection>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-6 mt-6">
-              {courses.map(course => <CategoryCard key={course.id} category={course} />)}
+              {categories.map(category => <CategoryCard key={category.id} category={category} />)}
             </div>
         </InnerSection>
       </Section>
