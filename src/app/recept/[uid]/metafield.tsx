@@ -2,17 +2,22 @@ import { PrismicText } from "@prismicio/react";
 import { BookStack, Alarm, User } from "iconoir-react";
 import { PrismicNextLink } from "@prismicio/next";
 import { Content, GroupField } from "@prismicio/client";
-import { RecipeDocumentData, Simplify } from "../../../../prismicio-types";
+import {
+  RecipeDocumentData,
+  Simplify,
+  TagDocument,
+} from "../../../../prismicio-types";
 import { convertTime } from "@/app/ui/slider/utils";
 
 type MetaFieldProps = {
-  tags: GroupField<Simplify<Content.RecipeDocumentDataTagsItem>>;
+  tags: GroupField<Simplify<Content.RecipeDocumentDataTagsItem>> & {
+    data: Pick<Content.TagDocument["data"], "name">;
+  };
   servings: RecipeDocumentData["servings"];
   time: RecipeDocumentData["time"];
 };
 
 export function MetaField({ tags, servings, time }: MetaFieldProps) {
-
   return (
     <ul className="flex my-4">
       {servings && (
@@ -43,16 +48,18 @@ export function MetaField({ tags, servings, time }: MetaFieldProps) {
             <BookStack />
           </span>
           <span>
-            {tags.map((data, index) => {
+            {tags.map((item, index) => {
+              const tag = item.tag as unknown as TagDocument;
+
               return (
                 <>
-                  {index ? ", " : ""}
+                  {index > 0 ? ", " : ""}
                   <PrismicNextLink
-                    key={data.tag.id}
-                    document={data.tag}
+                    key={tag.id}
+                    document={tag}
                     className="underline hover:no-underline decoration-white/70"
                   >
-                    <PrismicText field={data.tag.data.name} />
+                    <PrismicText field={tag.data.name} />
                   </PrismicNextLink>
                 </>
               );

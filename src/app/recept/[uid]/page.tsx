@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
 import { Content, asText } from "@prismicio/client";
-import { PrismicNextImage,  } from "@prismicio/next";
+import { PrismicNextImage } from "@prismicio/next";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SliceZone, PrismicText } from "@prismicio/react";
@@ -13,9 +13,15 @@ import { MetaField } from "./metafield";
 
 type Params = { uid: string };
 
-export async function generateMetadata({ params }: {params: Params}): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
   const client = createClient();
-  const recipe = await client.getByUID("recipe", params.uid).catch(() => notFound());
+  const recipe = await client
+    .getByUID("recipe", params.uid)
+    .catch(() => notFound());
 
   return {
     title: recipe.data.meta_title || `${asText(recipe.data.title)}`,
@@ -23,10 +29,18 @@ export async function generateMetadata({ params }: {params: Params}): Promise<Me
   };
 }
 
-export default async function SingleRecipePage({ params }: {params: Params}) {
+export default async function SingleRecipePage({ params }: { params: Params }) {
   const client = createClient();
 
-  const recipe = await client.getByUID("recipe", params.uid, {
+  const recipe = await client.getByUID<
+    Content.RecipeDocument & {
+      data: {
+        tags: {
+          data: Pick<Content.TagDocument["data"], "name">;
+        };
+      };
+    }
+  >("recipe", params.uid, {
     fetchLinks: ["tag.name"],
   });
 
@@ -41,6 +55,8 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
     (slices) => slices.slice_type === "text"
   );
   const description = recipe.data.description;
+
+  console.log(recipe.data.tags)
 
   return (
     <>
@@ -71,7 +87,6 @@ export default async function SingleRecipePage({ params }: {params: Params}) {
         <Section>
           <InnerSection className="border-b border-gray-200 pb-0">
             <div className="max-w-screen-md mx-auto pb-12">
-
               {description.length > 0 && (
                 <p className="font-sans font-semibold text-lg leading-relaxed text-primary-800 pb-[1em] last:pb-0">
                   <PrismicText field={description} />
@@ -146,9 +161,9 @@ export async function generateStaticParams() {
   const recipes = await client.getAllByType("recipe");
 
   return recipes.map((recipe) => {
-    return { 
-      uid: recipe.uid, 
-      title: recipe.data.meta_title, 
+    return {
+      uid: recipe.uid,
+      title: recipe.data.meta_title,
       description: recipe.data.meta_description,
     };
   });
