@@ -1,7 +1,8 @@
 import { createClient } from "@/prismicio";
+import { Metadata } from "next";
 import { InnerSection, Section } from "../ui/layout/containers";
 import { Hero } from "../ui/layout/Hero";
-import { PrismicText, SliceZone } from "@prismicio/react";
+import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 
 type PageProps = {
@@ -9,6 +10,17 @@ type PageProps = {
     uid: string;
   }
 }
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getByUID("page", params.uid);
+
+  return {
+    title: page.data.meta_title || page.data.title,
+    description: page.data.meta_description,
+  };
+}
+
 
 export default async function SinglePage({ params }: PageProps) {
   const client = createClient();
