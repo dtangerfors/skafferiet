@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import type { JSXMapSerializer } from "@prismicio/react";
 
 export type TextClassPrefix<T extends string> = T extends string ? `text-${T}` : T;
 
@@ -24,9 +25,9 @@ export const Paragraph = ({children, color, className}: TextProps) => (
   <p className={clsx("font-sans font-normal text-base leading-loose pb-[1em] last:pb-0", color ? color : "text-gray-800", className)}>{children}</p>
 )
 
-export const typography = {
-  heading1: ({ children }: { children: string[]}) => (<Heading1>{children}</Heading1>),
-  heading2: ({ children }: { children: string[]}) => (<Heading2>{children}</Heading2>),
-  heading3: ({ children }: { children: string[]}) => (<Heading3>{children}</Heading3>),
-  paragraph: ({ children }: { children: string[]}) => (<Paragraph>{children}</Paragraph>)
+export const typography: JSXMapSerializer = {
+  heading1: ({ children }) => (<Heading1>{children}</Heading1>),
+  heading2: ({ children }) => (<Heading2>{children}</Heading2>),
+  heading3: ({ children }) => (<Heading3>{children}</Heading3>),
+  paragraph: ({ children }) => (<Paragraph>{children}</Paragraph>)
 }
