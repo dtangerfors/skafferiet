@@ -4,6 +4,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { Heading2 } from "@/app/ui/typography";
 import { RecipeCard } from "@/app/ui/cards/RecipeCard";
 import clsx from "clsx";
+import { RecipeDocument } from "../../../prismicio-types";
 
 /**
  * Props for `FeaturedRecipes`.
@@ -22,7 +23,11 @@ const FeaturedRecipes = ({ slice }: FeaturedRecipesProps): JSX.Element => {
         <Heading2>{slice.primary.title}</Heading2>
       </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-3 lg:gap-x-6 mt-6">
-            {slice.items.map(item => <RecipeCard key={item.recipe.id} recipe={item.recipe} />)}
+            {slice.items.map(item => {
+              const recipe = item.recipe as unknown as RecipeDocument
+
+              return <RecipeCard key={recipe.id} recipe={recipe} />
+            })}
         </div>
       </InnerSection>
    </Section>
